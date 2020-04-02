@@ -14,3 +14,6 @@ npm install
 ```
 node server.js
 ```
+
+### Deploy on gcloud
+gcloud app deploy 
