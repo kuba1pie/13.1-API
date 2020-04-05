@@ -1,13 +1,13 @@
 const sql = require("./db.js");
 
 // constructor
-const Customer = function(customer) {
-  this.email = customer.email;
-  this.name = customer.name;
-  this.active = customer.active;
+const User = function (user) {
+  this.email = user.email;
+  this.name = user.name;
+  this.active = user.active;
 };
 
-Customer.create = (newCustomer, result) => {
+/* Customer.create = (newCustomer, result) => {
   sql.query("INSERT INTO customers SET ?", newCustomer, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -18,10 +18,10 @@ Customer.create = (newCustomer, result) => {
     console.log("created customer: ", { id: res.insertId, ...newCustomer });
     result(null, { id: res.insertId, ...newCustomer });
   });
-};
+}; */
 
-Customer.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM customers WHERE id = ${customerId}`, (err, res) => {
+User.findById = (userId, result) => {
+  sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -29,29 +29,19 @@ Customer.findById = (customerId, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0]);
+      console.log("found user: ", res[0]);
       result(null, res[0]);
       return;
     }
 
     // not found Customer with the id
-    result({ kind: "not_found" }, null);
+    result({
+      kind: "not_found"
+    }, null);
   });
 };
 
-Customer.getAll = result => {
-  sql.query("SELECT * FROM customers", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    console.log("ddcustomers: ", res);
-    result(null, res);
-  });
-};
-Customer.getAllUsers = result => {
+User.getAll = result => {
   sql.query("SELECT * FROM users", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -59,12 +49,12 @@ Customer.getAllUsers = result => {
       return;
     }
 
-    console.log("ddcustomers: ", res);
+    console.log("ddusers: ", res);
     result(null, res);
   });
 };
 
-Customer.updateById = (id, customer, result) => {
+/* Customer.updateById = (id, customer, result) => {
   sql.query(
     "UPDATE customers SET email = ?, name = ?, active = ? WHERE id = ?",
     [customer.email, customer.name, customer.active, id],
@@ -117,6 +107,6 @@ Customer.removeAll = result => {
     console.log(`deleted ${res.affectedRows} customers`);
     result(null, res);
   });
-};
+}; */
 
-module.exports = Customer;
+module.exports = User;

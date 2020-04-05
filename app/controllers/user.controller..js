@@ -1,6 +1,6 @@
-const Customer = require("../models/customer.model.js");
+const User = require("../models/user.model.js");
 
-// Create and Save a new Customer
+/* // Create and Save a new Customer
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -20,50 +20,42 @@ exports.create = (req, res) => {
   Customer.create(customer, (err, data) => {
     if (err)
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Customer."
+        message:
+          err.message || "Some error occurred while creating the Customer."
+      });
+    else res.send(data);
+  });
+}; */
+
+// Retrieve all Users from the database.
+exports.findAll = (req, res) => {
+  User.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving users."
       });
     else res.send(data);
   });
 };
 
-// Retrieve all Customers from the database.
-exports.findAll = (req, res) => {
-  Customer.getAll((err, data) => {
-    if (err)
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving customers."
-      });
-    else res.send(data);
-  });
-};
-//
-exports.findAllUsers = (req, res) => {
-  Customer.getAllUsers((err, data) => {
-    if (err)
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving customers."
-      });
-    else res.send(data);
-  });
-};
-// Find a single Customer with a customerId
+// Find a single User with a userId
 exports.findOne = (req, res) => {
-  Customer.findById(req.params.customerId, (err, data) => {
+  User.findById(req.params.userId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Customer with id ${req.params.customerId}.`
+          message: `Not found User with id ${req.params.UserId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Customer with id " + req.params.customerId
+          message: "Error retrieving User with id " + req.params.UserId
         });
       }
     } else res.send(data);
   });
 };
 
-// Update a Customer identified by the customerId in the request
+/* // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
@@ -106,9 +98,7 @@ exports.delete = (req, res) => {
           message: "Could not delete Customer with id " + req.params.customerId
         });
       }
-    } else res.send({
-      message: `Customer was deleted successfully!`
-    });
+    } else res.send({ message: `Customer was deleted successfully!` });
   });
 };
 
@@ -117,10 +107,10 @@ exports.deleteAll = (req, res) => {
   Customer.removeAll((err, data) => {
     if (err)
       res.status(500).send({
-        message: err.message || "Some error occurred while removing all customers."
+        message:
+          err.message || "Some error occurred while removing all customers."
       });
-    else res.send({
-      message: `All Customers were deleted successfully!`
-    });
+    else res.send({ message: `All Customers were deleted successfully!` });
   });
 };
+ */
