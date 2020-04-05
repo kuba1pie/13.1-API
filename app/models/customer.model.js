@@ -51,18 +51,6 @@ Customer.getAll = result => {
     result(null, res);
   });
 };
-Customer.getAllUsers = result => {
-  sql.query("SELECT * FROM users", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    console.log("ddcustomers: ", res);
-    result(null, res);
-  });
-};
 
 Customer.updateById = (id, customer, result) => {
   sql.query(

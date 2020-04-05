@@ -20,7 +20,7 @@ const User = function (user) {
   });
 }; */
 
-User.findById = (userId, result) => {
+/* User.findById = (userId, result) => {
   sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -39,9 +39,9 @@ User.findById = (userId, result) => {
       kind: "not_found"
     }, null);
   });
-};
+}; */
 
-User.getAll = result => {
+User.getAllUsers = result => {
   sql.query("SELECT * FROM users", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -49,7 +49,7 @@ User.getAll = result => {
       return;
     }
 
-    console.log("ddusers: ", res);
+    console.log("ddcustomers: ", res);
     result(null, res);
   });
 };

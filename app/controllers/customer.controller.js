@@ -1,4 +1,5 @@
 const Customer = require("../models/customer.model.js");
+const User = require("../models/user.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
@@ -38,7 +39,7 @@ exports.findAll = (req, res) => {
 };
 //
 exports.findAllUsers = (req, res) => {
-  Customer.getAllUsers((err, data) => {
+  User.getAllUsers((err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving customers."

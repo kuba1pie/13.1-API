@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
   });
 };
 
-// Find a single User with a userId
+/* // Find a single User with a userId
 exports.findOne = (req, res) => {
   User.findById(req.params.userId, (err, data) => {
     if (err) {
@@ -53,7 +53,7 @@ exports.findOne = (req, res) => {
       }
     } else res.send(data);
   });
-};
+}; */
 
 /* // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
