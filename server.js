@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   });
 });
 
-require("./app/routes/customer.routes.js")(app);
+require("./app/routes/routes.js")(app);
 //require("./app/routes/user.routes.js")(app);
 
 // set port, listen for requests

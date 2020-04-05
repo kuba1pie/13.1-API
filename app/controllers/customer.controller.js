@@ -1,5 +1,4 @@
 const Customer = require("../models/customer.model.js");
-const User = require("../models/user.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
@@ -37,16 +36,7 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
-//
-exports.findAllUsers = (req, res) => {
-  User.getAllUsers((err, data) => {
-    if (err)
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving customers."
-      });
-    else res.send(data);
-  });
-};
+
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
   Customer.findById(req.params.customerId, (err, data) => {

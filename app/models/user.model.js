@@ -41,7 +41,7 @@ const User = function (user) {
   });
 }; */
 
-User.getAllUsers = result => {
+User.getAll = result => {
   sql.query("SELECT * FROM users", (err, res) => {
     if (err) {
       console.log("error: ", err);
