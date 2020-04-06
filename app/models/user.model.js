@@ -2,23 +2,25 @@ const sql = require("./db.js");
 
 // constructor
 const User = function (user) {
-  this.email = user.email;
   this.name = user.name;
-  this.active = user.active;
+  this.surname = user.surname;
+  this.birth = user.birth;
+  this.weight = user.weight;
+  this.height = user.height;
 };
 
-/* Customer.create = (newCustomer, result) => {
-  sql.query("INSERT INTO customers SET ?", newCustomer, (err, res) => {
+User.create = (newUser, result) => {
+  sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer });
-    result(null, { id: res.insertId, ...newCustomer });
+    console.log("created user: ", { id: res.insertId, ...newUser });
+    result(null, { id: res.insertId, ...newUser });
   });
-}; */
+}; 
 
 /* User.findById = (userId, result) => {
   sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
@@ -49,7 +51,7 @@ User.getAll = result => {
       return;
     }
 
-    console.log("ddcustomers: ", res);
+    //console.log("ddcustomers: ", res);
     result(null, res);
   });
 };
