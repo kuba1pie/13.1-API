@@ -89,9 +89,9 @@ User.getAll = result => {
     }
   );
 };
-
-Customer.remove = (id, result) => {
-  sql.query("DELETE FROM customers WHERE id = ?", id, (err, res) => {
+*/
+User.remove = (id, result) => {
+  sql.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -99,16 +99,18 @@ Customer.remove = (id, result) => {
     }
 
     if (res.affectedRows == 0) {
-      // not found Customer with the id
-      result({ kind: "not_found" }, null);
+      // not found User with the id
+      result({
+        kind: "not_found"
+      }, null);
       return;
     }
 
-    console.log("deleted customer with id: ", id);
+    console.log("deleted user with id: ", id);
     result(null, res);
   });
 };
-
+/*
 Customer.removeAll = result => {
   sql.query("DELETE FROM customers", (err, res) => {
     if (err) {

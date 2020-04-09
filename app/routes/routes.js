@@ -23,7 +23,7 @@ module.exports = app => {
 
   // Delete a Item with ItemId
   app.delete("/customers/:customerId", customers.delete);
-  //app.delete("/users/:userId", users.delete);
+  app.delete("/users/:userId", users.delete);
 
   // Delete all Items
   app.delete("/customers", customers.deleteAll);
