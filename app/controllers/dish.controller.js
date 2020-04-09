@@ -1,4 +1,4 @@
-const User = require("../models/user.model.js");
+const Dish = require("../models/dish.model.js");
 
 // Create and Save a new User
 exports.create = (req, res) => {
@@ -10,7 +10,7 @@ exports.create = (req, res) => {
   }
 
   // Create a User
-  const user = new User({
+  const dish = new Dish({
     name: req.body.name,
     surname: req.body.surname,
     birth: req.body.birth,
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
   });
 
   // Save User in the database
-  User.create(user, (err, data) => {
+  Dish.create(dish, (err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || "Some error occurred while creating the User."
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-  User.getAll((err, data) => {
+  Dish.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving customers."
@@ -41,15 +41,15 @@ exports.findAll = (req, res) => {
 
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
-  User.findById(req.params.userId, (err, data) => {
+  Dish.findById(req.params.dishId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found User with id ${req.params.userId}.`
+          message: `Not found User with id ${req.params.dishId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving User with id " + req.params.userId
+          message: "Error retrieving User with id " + req.params.dishId
         });
       }
     } else res.send(data);

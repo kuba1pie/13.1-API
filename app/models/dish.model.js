@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 // constructor
-const User = function (user) {
+const Dish = function (dish) {
   this.name = user.name;
   this.lastname = user.lastname;
   this.birth = user.birth;
@@ -13,27 +13,27 @@ const User = function (user) {
   this.activity = user.activity;
 };
 
-User.create = (newUser, result) => {
-  sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
+Dish.create = (newDish, result) => {
+  sql.query("INSERT INTO dishes SET ?", newDish, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("created user: ", {
+    console.log("created dish: ", {
       id: res.insertId,
-      ...newUser
+      ...newDish
     });
     result(null, {
       id: res.insertId,
-      ...newUser
+      ...newDish
     });
   });
 };
 
-User.findById = (userId, result) => {
-  sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
+Dish.findById = (dishId, result) => {
+  sql.query(`SELECT * FROM dishes WHERE id = ${dishId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,8 +53,8 @@ User.findById = (userId, result) => {
   });
 };
 
-User.getAll = result => {
-  sql.query("SELECT * FROM users", (err, res) => {
+Dish.getAll = result => {
+  sql.query("SELECT * FROM dishes", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -121,4 +121,4 @@ Customer.removeAll = result => {
   });
 }; */
 
-module.exports = User;
+module.exports = Dish;
