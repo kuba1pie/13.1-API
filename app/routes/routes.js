@@ -19,6 +19,7 @@ module.exports = app => {
   app.get("/customers/:customerId", customers.findOne);
   app.get("/users/:userId", users.findOne);
   app.get("/dishes/:dishId", dishes.findOne);
+  app.get("/meals/:mealId", meals.findOne);
 
   // Update a Item with ItemId
   app.put("/customers/:customerId", customers.update);
@@ -27,6 +28,7 @@ module.exports = app => {
   // Delete a Item with ItemId
   app.delete("/customers/:customerId", customers.delete);
   app.delete("/users/:userId", users.delete);
+  app.delete("/meals/:mealId", meals.delete);
 
   // Delete all Items
   app.delete("/customers", customers.deleteAll);
