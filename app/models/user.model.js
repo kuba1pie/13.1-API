@@ -9,6 +9,7 @@ const User = function (user) {
   this.height = user.height;
   this.age = user.age;
   this.bmi = user.bmi;
+  this.email = user.email;
   this.gender = user.gender;
   this.activity = user.activity;
 };

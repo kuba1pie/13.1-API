@@ -18,6 +18,7 @@ exports.create = (req, res) => {
     weight: req.body.weight,
     height: req.body.height,
     gender: req.body.gender,
+    email: req.body.email,
     activity: req.body.activity,
   });
 
