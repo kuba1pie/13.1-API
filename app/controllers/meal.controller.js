@@ -3,23 +3,25 @@ const Meal = require("../models/meal.model.js");
 // Create and Save a new Meal
 exports.create = (req, res) => {
   // Validate request
+  const util = require('util')
+  console.log(util.inspect(req, false, null, true /* enable colors */ ))
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
   }
-
+  console.log('drugi: ' + req.body)
   // Create a Meal
-  const meal = new Meal({
-    name: req.body.name,
-    surname: req.body.surname,
-    birth: req.body.birth,
-    weight: req.body.weight,
-    height: req.body.height,
-  });
 
+  const meal = new Meal({
+    userId: req.body.userId,
+    name: req.body.name,
+    kcal: req.body.kcal,
+  });
+  console.log('trzeci: ' + req)
   // Save Meal in the database
   Meal.create(meal, (err, data) => {
+    console.log('czwarty: ' + meal)
     if (err)
       res.status(500).send({
         message: err.message || "Some error occurred while creating the Meal."

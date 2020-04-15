@@ -2,18 +2,22 @@ const sql = require("./db.js");
 
 // constructor
 const Meal = function (meal) {
-  this.name = user.name;
-  this.lastname = user.lastname;
-  this.birth = user.birth;
-  this.weight = user.weight;
-  this.height = user.height;
-  this.age = user.age;
-  this.bmi = user.bmi;
-  this.gender = user.gender;
-  this.activity = user.activity;
+  console.log('milll: ' + meal)
+
+  this.userId = meal.userId;
+  this.name = meal.name;
+  this.portion = meal.portion;
+  this.carbo = meal.carbo;
+  this.kcal = meal.kcal;
+  this.fat = meal.fat;
+  this.protein = meal.protein;
+  this.dishId = meal.dishId;
 };
 
 Meal.create = (newMeal, result) => {
+  console.log('piaty: ' + newMeal.userId) // niezdefiniowany userId newMeal pusty)
+  const util = require('util')
+  console.log(util.inspect(newMeal, false, null, true /* enable colors */ ))
   sql.query("INSERT INTO meals SET ?", newMeal, (err, res) => {
     if (err) {
       console.log("error: ", err);

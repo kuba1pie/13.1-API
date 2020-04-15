@@ -5,6 +5,7 @@ const app = express();
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
+//app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -22,7 +23,6 @@ app.get("/", (req, res) => {
     message: "Welcome to bezkoder application."
   });
 });
-
 require("./app/routes/routes.js")(app);
 //require("./app/routes/user.routes.js")(app);
 
