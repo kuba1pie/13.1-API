@@ -15,9 +15,6 @@ const Meal = function (meal) {
 };
 
 Meal.create = (newMeal, result) => {
-  console.log('piaty: ' + newMeal.userId) // niezdefiniowany userId newMeal pusty)
-  const util = require('util')
-  console.log(util.inspect(newMeal, false, null, true /* enable colors */ ))
   sql.query("INSERT INTO meals SET ?", newMeal, (err, res) => {
     if (err) {
       console.log("error: ", err);
