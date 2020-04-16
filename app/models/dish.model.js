@@ -66,6 +66,19 @@ Dish.getAll = result => {
   });
 };
 
+Dish.list = result => {
+  sql.query("SELECT id, name FROM dishes", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    //console.log("ddcustomers: ", res);
+    result(null, res);
+  });
+};
+
 /* Customer.updateById = (id, customer, result) => {
   sql.query(
     "UPDATE customers SET email = ?, name = ?, active = ? WHERE id = ?",

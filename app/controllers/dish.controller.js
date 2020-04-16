@@ -38,6 +38,16 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
+// Retrieve all Users from the database.
+exports.List = (req, res) => {
+  Dish.list((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving customers."
+      });
+    else res.send(data);
+  });
+};
 
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {

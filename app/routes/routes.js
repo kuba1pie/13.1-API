@@ -10,6 +10,7 @@ module.exports = app => {
   // Retrieve all Items
   app.get("/users", users.findAll);
   app.get("/dishes", dishes.findAll);
+  app.get("/dishesList", dishes.List);
   app.get("/meals", meals.findAll);
 
   // Retrieve a single Item with ItemId
