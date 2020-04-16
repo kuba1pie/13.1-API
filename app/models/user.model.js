@@ -70,7 +70,7 @@ User.getAll = result => {
 
 User.meals = (req, result) => {
   console.log(req.params.userId)
-  sql.query(`SELECT * FROM meals WHERE userId = ${req.params.userId} AND date = "${req.params.date}"`, (err, res) => {
+  sql.query(`SELECT meal, portion, name, kcal, protein, carbo, fat FROM meals WHERE userId = ${req.params.userId} AND date = "${req.params.date}"`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -78,7 +78,7 @@ User.meals = (req, result) => {
     }
 
     if (res.length) {
-      console.log("found user: ", res);
+      console.log("found meals for user: ", res);
       //result(null, res[0]);
       result(null, res);
       return;
