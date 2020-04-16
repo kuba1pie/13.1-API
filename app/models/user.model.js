@@ -68,6 +68,30 @@ User.getAll = result => {
   });
 };
 
+User.meals = (req, result) => {
+  console.log(req.params.userId)
+  sql.query(`SELECT * FROM meals WHERE userId = ${req.params.userId} AND date = "${req.params.date}"`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found user: ", res);
+      //result(null, res[0]);
+      result(null, res);
+      return;
+    }
+
+    // not found User with the id
+    result({
+      kind: "not_found"
+    }, null);
+  });
+};
+
+
 /* Customer.updateById = (id, customer, result) => {
   sql.query(
     "UPDATE customers SET email = ?, name = ?, active = ? WHERE id = ?",

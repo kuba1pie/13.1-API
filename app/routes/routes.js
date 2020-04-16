@@ -16,6 +16,9 @@ module.exports = app => {
   // Retrieve a single Item with ItemId
   app.get("/users/:userId", users.findOne);
   app.get("/dishes/:dishId", dishes.findOne);
+
+  // Retrieve User Meals with userId and date
+  app.get("/users/:userId/meals/:date", users.meals);
   app.get("/meals/:mealId", meals.findOne);
 
   // Update a Item with ItemId

@@ -43,6 +43,23 @@ exports.findAll = (req, res) => {
   });
 };
 
+// Retrieve all User Meals by date from the database.
+exports.meals = (req, res) => {
+  User.meals(req, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not meals for user ${req.params.userId} and date ${req.params.date} .`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Meals for User " + req.params.userId
+        });
+      }
+    } else res.send(data);
+  });
+};
+
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
   User.findById(req.params.userId, (err, data) => {
