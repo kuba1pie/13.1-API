@@ -2,8 +2,6 @@ const sql = require("./db.js");
 
 // constructor
 const Meal = function (meal) {
-  console.log('milll: ' + meal)
-
   this.userId = meal.userId;
   this.name = meal.name;
   this.portion = meal.portion;
@@ -34,7 +32,7 @@ Meal.create = (newMeal, result) => {
 };
 
 Meal.findById = (mealId, result) => {
-  sql.query(`SELECT * FROM meals WHERE id = ${mealId}`, (err, res) => {
+  sql.query(`SELECT * FROM meals WHERE mealId = ${mealId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

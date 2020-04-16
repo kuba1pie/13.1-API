@@ -33,7 +33,7 @@ Dish.create = (newDish, result) => {
 };
 
 Dish.findById = (dishId, result) => {
-  sql.query(`SELECT * FROM dishes WHERE id = ${dishId}`, (err, res) => {
+  sql.query(`SELECT * FROM dishes WHERE dishId = ${dishId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -67,7 +67,7 @@ Dish.getAll = result => {
 };
 
 Dish.list = result => {
-  sql.query("SELECT id, name FROM dishes", (err, res) => {
+  sql.query("SELECT name FROM dishes", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

@@ -13,6 +13,13 @@ exports.create = (req, res) => {
     userId: req.body.userId,
     name: req.body.name,
     kcal: req.body.kcal,
+    fat: req.body.fat,
+    protein: req.body.protein,
+    carbo: req.body.carbo,
+    dishId: req.body.dishId,
+    meal: req.body.meal,
+    mealId: req.body.mealId,
+    portion: req.body.portion,
   });
   // Save Meal in the database
   Meal.create(meal, (err, data) => {
