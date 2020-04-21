@@ -50,7 +50,7 @@ Dish.findById = (dishId, result) => {
 };
 
 Dish.getAll = result => {
-  sql.query("SELECT * FROM dishes", (err, res) => {
+  sql.query("SELECT name, dishId, kcal, fat, protein, carbo FROM dishes ORDER BY name", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
