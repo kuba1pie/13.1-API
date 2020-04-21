@@ -2,15 +2,11 @@ const sql = require("./db.js");
 
 // constructor
 const Dish = function (dish) {
-  this.name = user.name;
-  this.lastname = user.lastname;
-  this.birth = user.birth;
-  this.weight = user.weight;
-  this.height = user.height;
-  this.age = user.age;
-  this.bmi = user.bmi;
-  this.gender = user.gender;
-  this.activity = user.activity;
+  this.name = dish.name;
+  this.kcal = dish.kcal;
+  this.fat = dish.fat;
+  this.protein = dish.protein;
+  this.carbo = dish.carbo;
 };
 
 Dish.create = (newDish, result) => {

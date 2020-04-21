@@ -12,10 +12,11 @@ exports.create = (req, res) => {
   // Create a User
   const dish = new Dish({
     name: req.body.name,
-    surname: req.body.surname,
-    birth: req.body.birth,
-    weight: req.body.weight,
-    height: req.body.height,
+    kcal: req.body.kcal,
+    portion: req.body.portion,
+    protein: req.body.portion,
+    carbo: req.body.carbo,
+    fat: req.body.fat,
   });
 
   // Save User in the database

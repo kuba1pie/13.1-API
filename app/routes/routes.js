@@ -6,6 +6,7 @@ module.exports = app => {
   // Create a new Item
   app.post("/users", users.create);
   app.post("/meals", meals.create);
+  app.post("/dishes", dishes.create);
 
   // Retrieve all Items
   app.get("/users", users.findAll);
@@ -20,6 +21,7 @@ module.exports = app => {
   // Retrieve User Meals with userId and date
   app.get("/users/:userId/meals/:date", users.meals);
   app.get("/meals/:mealId", meals.findOne);
+
 
   // Update a Item with ItemId
   //app.put("/users/:userId", users.update);
