@@ -1,6 +1,6 @@
 const Dish = require("../models/dish.model.js");
 
-// Create and Save a new User
+// Create and Save a new Dish
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a User
+  // Create a Dish
   const dish = new Dish({
     name: req.body.name,
     kcal: req.body.kcal,
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
     fat: req.body.fat,
   });
 
-  // Save User in the database
+  // Save Dish in the database
   Dish.create(dish, (err, data) => {
     if (err)
       res.status(500).send({
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
   });
 };
 
-// Retrieve all Users from the database.
+// Retrieve all Dishes from the database.
 exports.findAll = (req, res) => {
   Dish.getAll((err, data) => {
     if (err)
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
-// Retrieve all Users from the database.
+// Retrieve all Dishes from the database.
 exports.List = (req, res) => {
   Dish.list((err, data) => {
     if (err)
@@ -50,7 +50,7 @@ exports.List = (req, res) => {
   });
 };
 
-// Find a single Customer with a customerId
+// Find a single Dish with a customerId
 exports.findOne = (req, res) => {
   Dish.findById(req.params.dishId, (err, data) => {
     if (err) {
