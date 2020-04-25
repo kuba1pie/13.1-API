@@ -107,4 +107,35 @@ User.remove = (id, result) => {
   });
 };
 
+User.updateById = (userId, user, result) => {
+  sql.query(
+    "UPDATE users SET email = ?, name = ?, lastname = ?, weight = ?, height = ?, activity = ? WHERE userId = ?",
+    [user.email, user.name, user.lastname, user.weight, user.height, user.activity, userId],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found User with the id
+        result({
+          kind: "not_found"
+        }, null);
+        return;
+      }
+
+      console.log("updated user: ", {
+        userId: userId,
+        ...user
+      });
+      result(null, {
+        userId: userId,
+        ...user
+      });
+    }
+  );
+};
+
 module.exports = User;
