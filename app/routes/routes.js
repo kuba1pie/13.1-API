@@ -25,6 +25,7 @@ module.exports = app => {
 
   // Update a Item with ItemId
   app.put("/users/:userId", users.update);
+  app.put("/dishes/:dishId", dishes.update);
 
   // Delete a Item with ItemId
   app.delete("/users/:userId", users.delete);

@@ -66,3 +66,33 @@ exports.findOne = (req, res) => {
     } else res.send(data);
   });
 };
+
+// Update a Dish identified by the dishId in the request
+exports.update = (req, res) => {
+  // Validate Request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  //console.log(req.body);
+
+  Dish.updateById(
+    req.params.dishId,
+    new Dish(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Dish with id ${req.params.dishId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating Dish with id " + req.params.dishId
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};

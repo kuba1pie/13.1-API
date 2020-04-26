@@ -75,6 +75,38 @@ Dish.list = result => {
   });
 };
 
+Dish.updateById = (dishId, dish, result) => {
+  sql.query(
+    "UPDATE dishes SET name = ?, kcal = ?, protein = ?, carbo = ?, fat = ?, portion = ? WHERE dishId = ?",
+    [dish.name, dish.kcal, dish.protein, dish.carbo, dish.fat, dish.portion, dishId],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found Dish with the id
+        result({
+          kind: "not_found"
+        }, null);
+        return;
+      }
+
+      console.log("updated dish: ", {
+        dishId: dishId,
+        ...dish
+      });
+      result(null, {
+        dishId: dishId,
+        ...dish
+      });
+    }
+  );
+};
+
+
 /* Customer.updateById = (id, customer, result) => {
   sql.query(
     "UPDATE customers SET email = ?, name = ?, active = ? WHERE id = ?",
