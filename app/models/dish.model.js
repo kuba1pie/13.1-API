@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 // constructor
-const Dish = function (dish) {
+const Dish = function(dish) {
   this.name = dish.name;
   this.kcal = dish.kcal;
   this.fat = dish.fat;
@@ -43,23 +43,31 @@ Dish.findById = (dishId, result) => {
     }
 
     // not found User with the id
-    result({
-      kind: "not_found"
-    }, null);
+    result(
+      {
+        kind: "not_found"
+      },
+      null
+    );
   });
 };
 
 Dish.getAll = result => {
-  sql.query("SELECT name, dishId, kcal, fat, protein, carbo FROM dishes ORDER BY name", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+  sql.query(
+    "SELECT name, dishId, kcal, fat, protein, carbo FROM dishes ORDER BY name",
+    (err, res) => {
+      //UPDATE serwer53641_fitvue.dishes SET name = CONCAT(UCASE(LEFT(name, 1)), SUBSTRING(name, 2))
+      // first letter uppercase
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    //console.log("ddcustomers: ", res);
-    result(null, res);
-  });
+      //console.log("ddcustomers: ", res);
+      result(null, res);
+    }
+  );
 };
 
 Dish.list = result => {
@@ -78,7 +86,15 @@ Dish.list = result => {
 Dish.updateById = (dishId, dish, result) => {
   sql.query(
     "UPDATE dishes SET name = ?, kcal = ?, protein = ?, carbo = ?, fat = ?, portion = ? WHERE dishId = ?",
-    [dish.name, dish.kcal, dish.protein, dish.carbo, dish.fat, dish.portion, dishId],
+    [
+      dish.name,
+      dish.kcal,
+      dish.protein,
+      dish.carbo,
+      dish.fat,
+      dish.portion,
+      dishId
+    ],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -88,9 +104,12 @@ Dish.updateById = (dishId, dish, result) => {
 
       if (res.affectedRows == 0) {
         // not found Dish with the id
-        result({
-          kind: "not_found"
-        }, null);
+        result(
+          {
+            kind: "not_found"
+          },
+          null
+        );
         return;
       }
 
@@ -105,7 +124,6 @@ Dish.updateById = (dishId, dish, result) => {
     }
   );
 };
-
 
 /* Customer.updateById = (id, customer, result) => {
   sql.query(
@@ -171,9 +189,12 @@ Dish.remove = (id, result) => {
 
     if (res.affectedRows == 0) {
       // not found Dish with the id
-      result({
-        kind: "not_found"
-      }, null);
+      result(
+        {
+          kind: "not_found"
+        },
+        null
+      );
       return;
     }
 
